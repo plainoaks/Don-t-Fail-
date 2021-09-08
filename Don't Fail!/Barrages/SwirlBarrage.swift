@@ -35,7 +35,7 @@ class SwirlBarrage: Barrage {
                     if self.enemy.frameCount % self.frameInterval == 0 {
                         for i in 0..<self.division {
                             let rotation: CGFloat = CGFloat.pi + CGFloat.pi * CGFloat(i) / CGFloat(self.division) + CGFloat(self.enemy.frameCount) / 20.0
-                            let speed:CGFloat = 3.0 * CGFloat(self.enemy.frameCount % 30) + 60.0
+                            let speed:CGFloat = 3.0 * CGFloat(self.enemy.frameCount % 30) + 70.0
                             fire(enemyPosition: self.enemy.position, dx: speed*cos(rotation), dy: speed*sin(rotation), color: self.color)
 //                            print("\(String(describing: self.enemy.frameCount)) \(rotation) \(speed)")
                         }
