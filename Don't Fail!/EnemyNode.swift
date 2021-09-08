@@ -24,9 +24,8 @@ class EnemyNode: SKSpriteNode {
         self.lastBullet = nil
         self.frameCount = 0
 
-        let color = UIColor.red
-        let size = CGSize(width: 50, height: 50)
-        super.init(texture: nil, color: color, size: size)
+        let enemyTexture = SKTexture(imageNamed: "enemy")
+        super.init(texture: enemyTexture, color: .clear, size: enemyTexture.size())
         
         self.healthBar = SKSpriteNode(color: .blue, size: CGSize(width: self.size.width, height: 5))
         self.healthBar.anchorPoint = CGPoint(x: 0.0, y: 0.5)
