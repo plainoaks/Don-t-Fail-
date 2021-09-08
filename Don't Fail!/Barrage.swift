@@ -10,11 +10,12 @@ class Barrage {
     }
     
     func fire(enemyPosition: CGPoint, dx: CGFloat, dy: CGFloat, color: UIColor) {
-        let enemyBullet = SKShapeNode(circleOfRadius: 2.5)
-        enemyBullet.fillColor = color
-        enemyBullet.strokeColor = UIColor.clear
+        let enemyBullet = SKShapeNode(circleOfRadius: 3.0)
+        enemyBullet.glowWidth = 0.1
+        enemyBullet.fillColor = .white
+        enemyBullet.strokeColor = color
         enemyBullet.position = enemyPosition
-        enemyBullet.physicsBody = SKPhysicsBody(circleOfRadius: 3.0)
+        enemyBullet.physicsBody = SKPhysicsBody(circleOfRadius: 2.5)
         enemyBullet.physicsBody?.categoryBitMask = self.scene.enemyBulletCategory
         enemyBullet.physicsBody?.contactTestBitMask = self.scene.spaceshipCategory + self.scene.screenCategory
         enemyBullet.physicsBody?.collisionBitMask = 0
@@ -47,22 +48,6 @@ class OmniDirectionalBarrage: Barrage {
     }
     
     func run() {
-//        if self.enemy.lastBarrage <= self.scene.currentTime {
-//            if self.enemy.lastBarrage + self.timeInterval >= self.scene.currentTime {
-//                if !self.enemy.attackEnded {
-//                    for i in 0..<self.division {
-//                        let rotation: CGFloat = 2.0 * CGFloat.pi * CGFloat(i) / CGFloat(self.division)
-//                        let speed:CGFloat = 60.0
-//                        fire(enemyPosition: self.enemy.position, dx: speed*cos(rotation), dy: speed*sin(rotation), color: color)
-//                    }
-//                    print("\(String(describing: self.enemy.name)): \(String(describing: self.scene.currentTime))")
-//                    self.enemy.attackEnded = true
-//                }
-//            } else {
-//                self.enemy.lastBarrage += self.timeInterval
-//                self.enemy.attackEnded = false
-//            }
-//        }
         if self.enemy.lastBarrage <= self.scene.currentTime {
             if self.enemy.lastBarrage + self.timeInterval >= self.scene.currentTime {
                 if !self.enemy.attackStarted {
