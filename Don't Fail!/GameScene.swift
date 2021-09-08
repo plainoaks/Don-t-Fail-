@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     
     var enemies: [String : EnemyNode]!
     var enemyCount: Int!
-    var maxEnemyNumber: Int = 3
+    var maxEnemyNumber: Int = 2
     var killCount: Int!
     
     var startButton: SKShapeNode!
