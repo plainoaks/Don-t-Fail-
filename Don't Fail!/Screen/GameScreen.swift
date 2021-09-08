@@ -163,7 +163,6 @@ class GameScreen {
             if enemyNode.hp <= enemyNode.max_hp * 0.5 {
                 if !enemyNode.isCrazy {
                     enemyNode.isCrazy = true
-                    enemyNode.lastBarrage = scene.currentTime
                     enemyNode.mainWeapon = SwirlBarrage(scene: scene, enemy: enemyNode, division: 9, duration: 0.2, timeInterval: 3.0).run
                 }
             }
