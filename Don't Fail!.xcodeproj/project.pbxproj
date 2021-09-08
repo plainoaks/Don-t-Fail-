@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		842327A926E89ACD009B7EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842327A826E89ACD009B7EE0 /* Assets.xcassets */; };
+		842327AC26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842327AB26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift */; };
+		842327AE26E8C7FC009B7EE0 /* SwirlBarrage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842327AD26E8C7FC009B7EE0 /* SwirlBarrage.swift */; };
 		8423772326E5AA5800633730 /* GameTitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423772226E5AA5800633730 /* GameTitleScreen.swift */; };
 		8423772526E5AE5500633730 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423772426E5AE5500633730 /* GameScreen.swift */; };
 		8481F91526DC8615004FBBA0 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8481F91426DC8615004FBBA0 /* EnemyNode.swift */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		842327A826E89ACD009B7EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Assets.xcassets"; sourceTree = "<group>"; };
+		842327AB26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmniDirectionalBarrage.swift; sourceTree = "<group>"; };
+		842327AD26E8C7FC009B7EE0 /* SwirlBarrage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwirlBarrage.swift; sourceTree = "<group>"; };
 		8423772226E5AA5800633730 /* GameTitleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTitleScreen.swift; sourceTree = "<group>"; };
 		8423772426E5AE5500633730 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		8481F91426DC8615004FBBA0 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
@@ -45,6 +49,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		842327AA26E8C741009B7EE0 /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				8423772426E5AE5500633730 /* GameScreen.swift */,
+				8423772226E5AA5800633730 /* GameTitleScreen.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		842327AF26E8C855009B7EE0 /* Barrages */ = {
+			isa = PBXGroup;
+			children = (
+				8481F92826E0E6F8004FBBA0 /* Barrage.swift */,
+				842327AD26E8C7FC009B7EE0 /* SwirlBarrage.swift */,
+				842327AB26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift */,
+			);
+			path = Barrages;
+			sourceTree = "<group>";
+		};
 		84D88F8326D75F5C0062E6D2 = {
 			isa = PBXGroup;
 			children = (
@@ -70,9 +93,8 @@
 				84D88F9826D75F610062E6D2 /* Info.plist */,
 				84D88F9526D75F610062E6D2 /* Preview Content */,
 				84D88F9E26D760DA0062E6D2 /* GameScene.swift */,
-				8423772426E5AE5500633730 /* GameScreen.swift */,
-				8423772226E5AA5800633730 /* GameTitleScreen.swift */,
-				8481F92826E0E6F8004FBBA0 /* Barrage.swift */,
+				842327AA26E8C741009B7EE0 /* Screen */,
+				842327AF26E8C855009B7EE0 /* Barrages */,
 				8481F91A26DCEFBA004FBBA0 /* Explosion.sks */,
 				8481F91426DC8615004FBBA0 /* EnemyNode.swift */,
 			);
@@ -161,7 +183,9 @@
 				84D88F9226D75F5D0062E6D2 /* ContentView.swift in Sources */,
 				8481F91526DC8615004FBBA0 /* EnemyNode.swift in Sources */,
 				8481F92926E0E6F9004FBBA0 /* Barrage.swift in Sources */,
+				842327AC26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift in Sources */,
 				84D88F9026D75F5D0062E6D2 /* DontFailApp.swift in Sources */,
+				842327AE26E8C7FC009B7EE0 /* SwirlBarrage.swift in Sources */,
 				8423772526E5AE5500633730 /* GameScreen.swift in Sources */,
 				8423772326E5AA5800633730 /* GameTitleScreen.swift in Sources */,
 			);
