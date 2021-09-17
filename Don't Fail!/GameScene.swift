@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
     
     var enemies: [String : EnemyNode]!
     var enemyCount: Int!
-    var maxEnemyNumber: Int = 2
+    var maxEnemyNumber: Int!
     var killCount: Int!
     
     var startButton: SKShapeNode!
@@ -103,7 +103,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ObservableObject {
                     enemy.lastBullet = enemy.lastBarrage
                 }
                 if !isPausing {
-                    enemy.mainWeapon()
+                    enemy.mainWeapon.run()
                 }
             }
             if self.lastUpdateTime == nil {
