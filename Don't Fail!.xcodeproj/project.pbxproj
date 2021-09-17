@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		842327A926E89ACD009B7EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842327A826E89ACD009B7EE0 /* Assets.xcassets */; };
 		842327AC26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842327AB26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift */; };
 		842327AE26E8C7FC009B7EE0 /* SwirlBarrage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842327AD26E8C7FC009B7EE0 /* SwirlBarrage.swift */; };
 		8423772326E5AA5800633730 /* GameTitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423772226E5AA5800633730 /* GameTitleScreen.swift */; };
@@ -15,6 +14,7 @@
 		8481F91526DC8615004FBBA0 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8481F91426DC8615004FBBA0 /* EnemyNode.swift */; };
 		8481F91B26DCEFBA004FBBA0 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8481F91A26DCEFBA004FBBA0 /* Explosion.sks */; };
 		8481F92926E0E6F9004FBBA0 /* Barrage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8481F92826E0E6F8004FBBA0 /* Barrage.swift */; };
+		84B843F526F4525E009AECBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B843F426F4525E009AECBC /* Assets.xcassets */; };
 		84D88F9026D75F5D0062E6D2 /* DontFailApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D88F8F26D75F5D0062E6D2 /* DontFailApp.swift */; };
 		84D88F9226D75F5D0062E6D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D88F9126D75F5D0062E6D2 /* ContentView.swift */; };
 		84D88F9726D75F610062E6D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D88F9626D75F610062E6D2 /* Preview Assets.xcassets */; };
@@ -22,7 +22,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		842327A826E89ACD009B7EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/Assets.xcassets"; sourceTree = "<group>"; };
 		842327AB26E8C7BC009B7EE0 /* OmniDirectionalBarrage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmniDirectionalBarrage.swift; sourceTree = "<group>"; };
 		842327AD26E8C7FC009B7EE0 /* SwirlBarrage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwirlBarrage.swift; sourceTree = "<group>"; };
 		8423772226E5AA5800633730 /* GameTitleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTitleScreen.swift; sourceTree = "<group>"; };
@@ -30,6 +29,7 @@
 		8481F91426DC8615004FBBA0 /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		8481F91A26DCEFBA004FBBA0 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		8481F92826E0E6F8004FBBA0 /* Barrage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barrage.swift; sourceTree = "<group>"; };
+		84B843F426F4525E009AECBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D88F8C26D75F5D0062E6D2 /* Don't Fail!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Don't Fail!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D88F8F26D75F5D0062E6D2 /* DontFailApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DontFailApp.swift; sourceTree = "<group>"; };
 		84D88F9126D75F5D0062E6D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 			children = (
 				84D88F8F26D75F5D0062E6D2 /* DontFailApp.swift */,
 				84D88F9126D75F5D0062E6D2 /* ContentView.swift */,
-				842327A826E89ACD009B7EE0 /* Assets.xcassets */,
+				84B843F426F4525E009AECBC /* Assets.xcassets */,
 				84D88F9826D75F610062E6D2 /* Info.plist */,
 				84D88F9526D75F610062E6D2 /* Preview Content */,
 				84D88F9E26D760DA0062E6D2 /* GameScene.swift */,
@@ -167,7 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D88F9726D75F610062E6D2 /* Preview Assets.xcassets in Resources */,
-				842327A926E89ACD009B7EE0 /* Assets.xcassets in Resources */,
+				84B843F526F4525E009AECBC /* Assets.xcassets in Resources */,
 				8481F91B26DCEFBA004FBBA0 /* Explosion.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
