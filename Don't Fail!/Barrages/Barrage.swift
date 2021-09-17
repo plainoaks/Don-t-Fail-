@@ -24,4 +24,8 @@ class Barrage {
         enemyBullet.zRotation = atan(dy/dx)
         self.scene.addChild(enemyBullet)
     }
+    
+    func run() {
+        // code
+    }
 }

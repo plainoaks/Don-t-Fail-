@@ -22,7 +22,7 @@ class SwirlBarrage: Barrage {
         super.init(scene: scene)
     }
     
-    func run() {
+    override func run() {
         if self.enemy.lastBarrage <= self.scene.currentTime {
             if self.enemy.lastBarrage + self.timeInterval >= self.scene.currentTime {
                 if !self.enemy.attackStarted {
