@@ -11,6 +11,7 @@ class GameScreen {
         scene.isReleased = false
         scene.enemies = [:]
         scene.enemyCount = 0
+        scene.maxEnemyNumber = 1
         scene.killCount = 0
         scene.startTime = nil
         scene.currentTime = nil
@@ -21,11 +22,11 @@ class GameScreen {
         scene.physicsWorld.contactDelegate = scene
         scene.physicsBody?.categoryBitMask = scene.screenCategory
         scene.physicsBody?.contactTestBitMask = scene.missileCategory + scene.enemyBulletCategory
-        scene.spaceship = SKSpriteNode(color: UIColor.green, size: scene.spaceshipSize)
+        scene.spaceship = SKSpriteNode(imageNamed: "eagle")
         scene.spaceship_x = scene.frame.midX
         scene.spaceship_y = scene.frame.midY / 2
         scene.spaceship.position = CGPoint(x: scene.spaceship_x, y: scene.spaceship_y)
-        scene.spaceship.physicsBody = SKPhysicsBody(rectangleOf: scene.spaceship.size)
+        scene.spaceship.physicsBody = SKPhysicsBody(rectangleOf: scene.spaceshipSize)
         scene.spaceship.physicsBody?.categoryBitMask = scene.spaceshipCategory
         scene.spaceship.physicsBody?.contactTestBitMask = scene.enemyBulletCategory
         scene.spaceship.physicsBody?.collisionBitMask = scene.screenCategory
@@ -47,12 +48,14 @@ class GameScreen {
     
     func touchesMoved(scene: GameScene, touching: CGPoint) {
         if scene.isStarted {
-            let minX = min(scene.spaceship_x + touching.x - scene.lastTouch.x, scene.frame.width)
-            scene.spaceship_x = max(0, minX)
-            let minY = min(scene.spaceship_y + touching.y - scene.lastTouch.y, scene.frame.height)
-            scene.spaceship_y = max(0, minY)
-            scene.spaceship.position = CGPoint(x: scene.spaceship_x, y: scene.spaceship_y)
-            
+            let firstTouchPoint = scene.atPoint(scene.firstTouch)
+            if firstTouchPoint.name != "RETRY" && firstTouchPoint.name != "TOP" {
+                let minX = min(scene.spaceship_x + touching.x - scene.lastTouch.x, scene.frame.width)
+                scene.spaceship_x = max(0, minX)
+                let minY = min(scene.spaceship_y + touching.y - scene.lastTouch.y, scene.frame.height)
+                scene.spaceship_y = max(0, minY)
+                scene.spaceship.position = CGPoint(x: scene.spaceship_x, y: scene.spaceship_y)
+            }
         }
         
         scene.lastTouch = touching
@@ -115,41 +118,68 @@ class GameScreen {
     
     func addEnemy(scene: GameScene) {
         scene.enemyCount += 1
-        let enemy = EnemyNode(max_hp: 200)
-        enemy.position = CGPoint(x: scene.frame.width * CGFloat.random(in: 0.1...0.9), y: scene.frame.height)
-        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+        let enemy = EnemyNode(scene: scene, max_hp: 200)
+        enemy.position = CGPoint(x: scene.frame.width / 2/* * CGFloat.random(in: 0.1...0.9)*/, y: scene.frame.height)
+        let enemyTexture = SKTexture(imageNamed: "enemy")
+        enemy.physicsBody = SKPhysicsBody(texture: enemyTexture, size: enemyTexture.size())
         enemy.physicsBody?.categoryBitMask = scene.enemyCategory
         enemy.physicsBody?.contactTestBitMask = scene.missileCategory
         enemy.physicsBody?.collisionBitMask = 0
         enemy.name = UUID().uuidString
         scene.addChild(enemy)
-//        enemy.mainWeapon = OmniDirectionalBarrage(scene: scene, enemy: enemy, division: 32, duration: 0.0, timeInterval: 3.5, color: UIColor.cyan).run
-        enemy.mainWeapon = SwirlBarrage(scene: scene, enemy: enemy, division: 8, duration: 0.1, timeInterval: 3.5, frameInterval: 2, color: UIColor.cyan).run
+        enemy.mainWeapon = SwirlBarrage(scene: scene, enemy: enemy, division: 8, duration: 0.1, timeInterval: 3.5, frameInterval: 2, color: UIColor.cyan)
         
         scene.enemies[enemy.name!] = enemy
         
         let appear = SKAction.moveTo(y: scene.frame.height * 0.8, duration: 5.0)
-        var firstDirection: CGFloat {
-            if abs(enemy.position.x - scene.frame.width) >= enemy.position.x {
-                return scene.frame.width * 0.9
-            } else {
-                return scene.frame.width * 0.1
-            }
-        }
-        let battleStart = SKAction.moveTo(x: firstDirection, duration: TimeInterval(10.0 * abs(enemy.position.x-firstDirection) / (scene.frame.width * 0.9)))
-        battleStart.timingMode = SKActionTimingMode.easeInEaseOut
-        let toLeft = SKAction.moveTo(x: scene.frame.width * 0.1, duration: 10.0)
-        let toRight = SKAction.moveTo(x: scene.frame.width * 0.9, duration: 10.0)
-        toLeft.timingMode = SKActionTimingMode.easeInEaseOut
-        toRight.timingMode = SKActionTimingMode.easeInEaseOut
+        appear.timingMode = .easeOut
+        
+        let startPoint = CGPoint(x: scene.frame.width / 2, y: scene.frame.height * 0.8)
+        let lPoint = CGPoint(x: scene.frame.width * 0.1, y: scene.frame.height * 0.8)
+        let llControlPoint = CGPoint(x: scene.frame.width * 0.1, y: scene.frame.height * 0.7)
+        let luControlPoint = CGPoint(x: scene.frame.width * 0.1, y: scene.frame.height * 0.9)
+        let rPoint = CGPoint(x: scene.frame.width * 0.9, y: scene.frame.height * 0.8)
+        let rlControlPoint = CGPoint(x: scene.frame.width * 0.9, y: scene.frame.height * 0.7)
+        let ruControlPoint = CGPoint(x: scene.frame.width * 0.9, y: scene.frame.height * 0.9)
+        
+        let line1 = UIBezierPath()
+        line1.move(to: startPoint)
+        line1.addQuadCurve(to: lPoint, controlPoint: llControlPoint)
+        let line2 = UIBezierPath()
+        line2.move(to: lPoint)
+        line2.addQuadCurve(to: startPoint, controlPoint: luControlPoint)
+        line2.addQuadCurve(to: rPoint, controlPoint: rlControlPoint)
+        let line3 = UIBezierPath()
+        line3.move(to: rPoint)
+        line3.addQuadCurve(to: startPoint, controlPoint: ruControlPoint)
+        line3.addQuadCurve(to: lPoint, controlPoint: llControlPoint)
+        
+        let orbit1 = SKAction.follow(line1.cgPath, asOffset: false, orientToPath: false, duration: 3.0)
+        let orbit2 = SKAction.follow(line2.cgPath, asOffset: false, orientToPath: false, duration: 6.0)
+        let orbit3 = SKAction.follow(line3.cgPath, asOffset: false, orientToPath: false, duration: 6.0)
+        
+//        var firstDirection: CGFloat {
+//            if abs(enemy.position.x - scene.frame.width) >= enemy.position.x {
+//                return scene.frame.width * 0.9
+//            } else {
+//                return scene.frame.width * 0.1
+//            }
+//        }
+//        let battleStart = SKAction.moveTo(x: firstDirection, duration: TimeInterval(10.0 * abs(enemy.position.x-firstDirection) / (scene.frame.width * 0.9)))
+//        battleStart.timingMode = SKActionTimingMode.easeInEaseOut
+//        let toLeft = SKAction.moveTo(x: scene.frame.width * 0.1, duration: 10.0)
+//        let toRight = SKAction.moveTo(x: scene.frame.width * 0.9, duration: 10.0)
+//        toLeft.timingMode = SKActionTimingMode.easeInEaseOut
+//        toRight.timingMode = SKActionTimingMode.easeInEaseOut
         
         enemy.run(appear) {
             enemy.isInvincible = false
-            if firstDirection == scene.frame.width * 0.9 {
-                enemy.run(SKAction.sequence([battleStart, SKAction.repeatForever(SKAction.sequence([toLeft, toRight]))]))
-            } else {
-                enemy.run(SKAction.sequence([battleStart, SKAction.repeatForever(SKAction.sequence([toRight, toLeft]))]))
-            }
+            enemy.run(SKAction.sequence([orbit1, SKAction.repeatForever(SKAction.sequence([orbit2, orbit3]))]))
+//            if firstDirection == scene.frame.width * 0.9 {
+//                enemy.run(SKAction.sequence([battleStart, SKAction.repeatForever(SKAction.sequence([toLeft, toRight]))]))
+//            } else {
+//                enemy.run(SKAction.sequence([battleStart, SKAction.repeatForever(SKAction.sequence([toRight, toLeft]))]))
+//            }
         }
     }
     
@@ -163,7 +193,7 @@ class GameScreen {
             if enemyNode.hp <= enemyNode.max_hp * 0.5 {
                 if !enemyNode.isCrazy {
                     enemyNode.isCrazy = true
-                    enemyNode.mainWeapon = SwirlBarrage(scene: scene, enemy: enemyNode, division: 9, duration: 0.2, timeInterval: 3.0).run
+                    enemyNode.mainWeapon = SwirlBarrage(scene: scene, enemy: enemyNode, division: 9, duration: 0.2, timeInterval: 3.0)
                 }
             }
             
@@ -212,6 +242,22 @@ class GameScreen {
         winner.position = CGPoint(x: scene.frame.midX, y: scene.frame.height * 0.55)
         winner.fontSize = 48
         scene.addChild(winner)
+        
+        let result = SKLabelNode(fontNamed: "Cochin")
+        result.text = "SCORE TIME"
+        result.position = CGPoint(x: scene.frame.midX, y: scene.frame.height * 0.45)
+        result.fontSize = 36
+        scene.addChild(result)
+        
+        let score = SKLabelNode(fontNamed: "Cochin")
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .positional
+        formatter.allowedUnits = [.minute,.second]
+        formatter.zeroFormattingBehavior = .pad
+        score.text = formatter.string(from: scene.currentTime - scene.startTime)
+        score.position = CGPoint(x: scene.frame.midX, y: scene.frame.height * 0.4)
+        score.fontSize = 32
+        scene.addChild(score)
         
         addRetryButton(scene: scene)
         addToTopButton(scene: scene)
